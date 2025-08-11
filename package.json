@@ -1,6 +1,3 @@
-// package.json
-// This file lists the dependencies and scripts needed to run and build your React app.
-
 {
   "name": "my-portfolio-website",
   "version": "0.1.0",
