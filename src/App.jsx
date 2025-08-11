@@ -2,7 +2,6 @@
 // This is your main React component. All the content and logic for your portfolio website lives here.
 
 import React from 'react';
-import ReactDOM from 'react-dom/client';
 import profilePic from './profileImage.jpeg';
 
 // The main App component that renders the entire portfolio website.
