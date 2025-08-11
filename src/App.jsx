@@ -4,10 +4,8 @@
 import React, { useState, useEffect } from 'react';
 import { CSSTransition, SwitchTransition } from 'react-transition-group';
 import profilePic from './profileImage.jpeg';
-import profilePic2 from './profileImage2.jpg';
+import profilePic2 from './profileImage2.jpeg';
 import profilePic3 from './profileImage3.jpeg';
-import profilePic4 from './profileImage4.jpg';
-import profilePic5 from './profileImage5.jpeg';
 import resume from './resume.pdf';
 import './App.css'; // Make sure to import the App.css file
 
@@ -19,7 +17,7 @@ const App = () => {
     title: 'Data & AI Enthusiast',
     bio: "I turn ‘what if’ into ‘it works’—8+ years of building AI-powered, data-driven solutions for Singapore’s top organisations.",
     // Updated to an array of three profile images for the carousel.
-    profileImages: [profilePic, profilePic2, profilePic3,profilePic4,profilePic5], 
+    profileImages: [profilePic, profilePic2, profilePic3], 
     resumeURL: resume,
     contact: {
       email: 'eswar.shadows@gmail.com',
@@ -77,7 +75,7 @@ const App = () => {
 
       // Clear the interval when the component unmounts
       return () => clearInterval(intervalId);
-    }, [portfolioData.profileImages.length]);
+    }, []);
 
     return (
       // Changed padding to be larger on desktop for a more dramatic feel
@@ -214,14 +212,14 @@ const App = () => {
       {/* Header with navigation */}
       <header className="sticky top-0 z-50 bg-gray-900 bg-opacity-90 backdrop-filter backdrop-blur-lg border-b border-gray-700">
         <nav className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <a href="#" className="text-2xl font-bold text-indigo-400" onClick={() => setActiveSection('hero')}>
+          <a onClick={() => setActiveSection('hero')} className="text-2xl font-bold text-indigo-400 cursor-pointer">
             {portfolioData.name}
           </a>
           <div className="space-x-4">
-            <a href="#" className="text-lg text-gray-300 hover:text-white transition-colors" onClick={() => setActiveSection('projects')}>Projects</a>
-            <a href="#" className="text-lg text-gray-300 hover:text-white transition-colors" onClick={() => setActiveSection('skills')}>Skills</a>
-            <a href="#" className="text-lg text-gray-300 hover:text-white transition-colors" onClick={() => setActiveSection('resume')}>Resume</a>
-            <a href="#" className="text-lg text-gray-300 hover:text-white transition-colors" onClick={() => setActiveSection('contact')}>Contact</a>
+            <a onClick={() => setActiveSection('projects')} className="text-lg text-gray-300 hover:text-white transition-colors cursor-pointer">Projects</a>
+            <a onClick={() => setActiveSection('skills')} className="text-lg text-gray-300 hover:text-white transition-colors cursor-pointer">Skills</a>
+            <a onClick={() => setActiveSection('resume')} className="text-lg text-gray-300 hover:text-white transition-colors cursor-pointer">Resume</a>
+            <a onClick={() => setActiveSection('contact')} className="text-lg text-gray-300 hover:text-white transition-colors cursor-pointer">Contact</a>
           </div>
         </nav>
       </header>
