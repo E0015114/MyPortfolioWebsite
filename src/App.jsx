@@ -214,14 +214,14 @@ const App = () => {
       {/* Header with navigation */}
       <header className="sticky top-0 z-50 bg-gray-900 bg-opacity-90 backdrop-filter backdrop-blur-lg border-b border-gray-700">
         <nav className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <a onClick={() => setActiveSection('hero')} className="text-2xl font-bold text-indigo-400 cursor-pointer">
+          <a href="#" onClick={() => setActiveSection('hero')} className="text-2xl font-bold text-indigo-400 cursor-pointer">
             {portfolioData.name}
           </a>
           <div className="space-x-4">
-            <a onClick={() => setActiveSection('projects')} className="text-lg text-gray-300 hover:text-white transition-colors cursor-pointer">Projects</a>
-            <a onClick={() => setActiveSection('skills')} className="text-lg text-gray-300 hover:text-white transition-colors cursor-pointer">Skills</a>
-            <a onClick={() => setActiveSection('resume')} className="text-lg text-gray-300 hover:text-white transition-colors cursor-pointer">Resume</a>
-            <a onClick={() => setActiveSection('contact')} className="text-lg text-gray-300 hover:text-white transition-colors cursor-pointer">Contact</a>
+            <a href="#projects" onClick={() => setActiveSection('projects')} className="text-lg text-gray-300 hover:text-white transition-colors cursor-pointer">Projects</a>
+            <a href="#skills" onClick={() => setActiveSection('skills')} className="text-lg text-gray-300 hover:text-white transition-colors cursor-pointer">Skills</a>
+            <a href="#resume" onClick={() => setActiveSection('resume')} className="text-lg text-gray-300 hover:text-white transition-colors cursor-pointer">Resume</a>
+            <a href="#contact" onClick={() => setActiveSection('contact')} className="text-lg text-gray-300 hover:text-white transition-colors cursor-pointer">Contact</a>
           </div>
         </nav>
       </header>
