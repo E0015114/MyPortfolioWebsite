@@ -4,8 +4,10 @@
 import React, { useState, useEffect } from 'react';
 import { CSSTransition, SwitchTransition } from 'react-transition-group';
 import profilePic from './profileImage.jpeg';
-import profilePic2 from './profileImage2.jpeg';
+import profilePic2 from './profileImage2.jpg';
 import profilePic3 from './profileImage3.jpeg';
+import profilePic4 from './profileImage4.jpg';
+import profilePic5 from './profileImage5.jpeg';
 import resume from './resume.pdf';
 import './App.css'; // Make sure to import the App.css file
 
@@ -17,7 +19,7 @@ const App = () => {
     title: 'Data & AI Enthusiast',
     bio: "I turn ‘what if’ into ‘it works’—8+ years of building AI-powered, data-driven solutions for Singapore’s top organisations.",
     // Updated to an array of three profile images for the carousel.
-    profileImages: [profilePic, profilePic2, profilePic3], 
+    profileImages: [profilePic, profilePic2, profilePic3,profilePic4,profilePic5], 
     resumeURL: resume,
     contact: {
       email: 'eswar.shadows@gmail.com',
