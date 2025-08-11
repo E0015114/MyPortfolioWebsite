@@ -1,4 +1,8 @@
+// App.jsx
+// This is your main React component. All the content and logic for your portfolio website lives here.
+
 import React from 'react';
+import ReactDOM from 'react-dom/client';
 
 // The main App component that renders the entire portfolio website.
 const App = () => {
