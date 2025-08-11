@@ -156,7 +156,7 @@ const App = () => {
       {/* Header with navigation */}
       <header className="sticky top-0 z-50 bg-gray-900 bg-opacity-90 backdrop-filter backdrop-blur-lg border-b border-gray-700">
         <nav className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <a href="#" className="text-xl font-bold text-indigo-400">
+          <a href="#name" className="text-xl font-bold text-indigo-400">
             {portfolioData.name}
           </a>
           <div className="space-x-4">
