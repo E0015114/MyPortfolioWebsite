@@ -3,6 +3,7 @@
 
 import React from 'react';
 import profilePic from './profileImage.jpeg';
+import resume from './resume.pdf'
 
 // The main App component that renders the entire portfolio website.
 const App = () => {
@@ -10,8 +11,9 @@ const App = () => {
   const portfolioData = {
     name: 'Eswar Raj',
     title: 'Data & AI Enthusiast',
-    bio: "I've spent the last 8+ years building cool stuff—starting as a developer who loved getting my hands dirty with code, and eventually becoming a Solutions Architect at Singapore's Healthcare IT Wing. Along the way, I picked up an M.Tech in Enterprise Business Analytics from NUS, diving deep into data science, NLP, and all things Generative AI. What really gets me excited is experimenting with cutting-edge tech, spinning up proof-of-concepts, and figuring out how to turn crazy ideas into real solutions that actually work. I'm basically that person who can't stop tinkering with the latest AI tools and wondering 'what if we could make this even better?'",
+    bio: "I turn ‘what if’ into ‘it works’—8+ years of building AI-powered, data-driven solutions for Singapore’s top organisations.",
     profileImage: profilePic, 
+    resumeURL: resume,
     contact: {
       email: 'eswar.shadows@gmail.com',
       linkedin: 'eswar-raj-rajendran-67293b128/',
@@ -20,22 +22,16 @@ const App = () => {
     projects: [
       {
         id: 1,
-        title: 'Project Alpha: Data Analytics Dashboard',
-        description: 'A comprehensive dashboard for visualizing and analyzing large-scale datasets. This project involved data ingestion, processing, and interactive visualization using technologies like Python, Pandas, and D3.js.',
-        link: '#', // Replace with a link to the project repo or live demo
+        title: 'AlumNet: Where Alumni Data Meets Agentic AI',
+        description: 'AlumNet — Rethinking alumni search with Agentic AI. Built during my NUS graduate course, this system enables natural-language queries over alumni profiles using a fine-tuned LLaMA 3 model, vector embeddings, and scalable search. From parsing resumes to building a conversational UI, AlumNet showcases a full-stack LLM solution—turning static data into insightful, structured results.',
+        link: 'https://medium.com/@eswar.shadows/background-aef167943e1c', // Replace with a link to the project repo or live demo
       },
       {
         id: 2,
-        title: 'Project Beta: Microservices-based E-commerce Platform',
-        description: 'Developed a scalable e-commerce platform using a microservices architecture. Key components included a product service, order service, and user authentication service, all communicating via a message queue.',
-        link: '#', // Replace with a link to the project repo or live demo
-      },
-      {
-        id: 3,
-        title: 'Project Gamma: Cloud-native Mobile Application',
-        description: 'A mobile application built on a serverless backend. The project leveraged various cloud services for authentication, storage, and database management, focusing on cost-efficiency and scalability.',
-        link: '#', // Replace with a link to the project repo or live demo
-      },
+        title: 'Smart Car Park Availability System',
+        description: 'A predictive parking intelligence solution for Singapore—using real-time APIs, BigQuery-powered data pipelines, and LSTM forecasting via Google Cloud to forecast availability up to 30 minutes ahead. Deployed through containerized microservices and monitored with performance dashboards, it turns raw data into actionable insights for drivers and planners alike.',
+        link: 'https://medium.com/@eswar.shadows/smart-car-park-availability-system-using-big-data-analytics-277dd2bae403', // Replace with a link to the project repo or live demo
+      }
     ],
     skills: [
       'Agentic AI',
@@ -110,6 +106,24 @@ const App = () => {
             </span>
           ))}
         </div>
+       </div>
+    </section>
+  );
+  // New Resume section component
+  const Resume = () => (
+    <section id="resume" className="py-16 bg-gray-900 px-4">
+      <div className="container mx-auto text-center">
+        <h2 className="text-3xl font-bold mb-4">Resume</h2>
+        <p className="text-gray-300 mb-8">
+          A copy of my resume is available for download below.
+        </p>
+        <a
+          href={portfolioData.resumeURL}
+          download
+          className="inline-block bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-3 px-8 rounded-lg shadow-lg transition-colors"
+        >
+          Download Resume
+        </a>
       </div>
     </section>
   );
@@ -162,6 +176,7 @@ const App = () => {
           <div className="space-x-4">
             <a href="#projects" className="text-gray-300 hover:text-white transition-colors">Projects</a>
             <a href="#skills" className="text-gray-300 hover:text-white transition-colors">Skills</a>
+            <a href="#resume" className="text-gray-300 hover:text-white transition-colors">Resume</a>
             <a href="#contact" className="text-gray-300 hover:text-white transition-colors">Contact</a>
           </div>
         </nav>
@@ -171,6 +186,7 @@ const App = () => {
         <Hero />
         <Projects />
         <Skills />
+        <Resume />
         <Contact />
       </main>
 
