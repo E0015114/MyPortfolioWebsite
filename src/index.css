@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Custom styles for the scroll animation to work correctly */
+/* This is a simple fix to ensure the page has enough height for sections to be observed */
+html, body, #root {
+  height: 100%;
+}
