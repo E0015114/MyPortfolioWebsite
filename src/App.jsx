@@ -267,14 +267,15 @@ const App = () => {
       <footer className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50">
         <nav className="bg-gray-800/60 backdrop-blur-md rounded-full shadow-lg p-2">
           <div className="flex items-center space-x-1">
-            {navLinks.map(link => (
-              <a
+            {navLinks.map((link) => (
+              <button
+                type="button"
                 key={link.id}
                 onClick={() => setActiveSection(link.id)}
                 className={`nav-pill ${activeSection === link.id ? 'active' : ''}`}
               >
                 {link.label}
-              </a>
+              </button>
             ))}
           </div>
         </nav>

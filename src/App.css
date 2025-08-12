@@ -40,6 +40,9 @@
 
 /* --- Pill Navigation Bar --- */
 .nav-pill {
+  background: transparent;
+  border: none;
+  font-family: inherit; /* Buttons don't always inherit font styles */
   padding: 0.5rem 1.25rem; /* Corresponds to py-2 px-5 */
   border-radius: 9999px; /* Corresponds to rounded-full */
   cursor: pointer;
