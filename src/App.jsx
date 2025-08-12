@@ -66,38 +66,45 @@ const App = () => {
   const [enlargedProject, setEnlargedProject] = useState(null);
 
   const Hero = () => {
-
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
-    const [isPulsing, setIsPulsing] = useState(true);    
-    let pulseTimeout;
+    const [isContentVisible, setIsContentVisible] = useState(false);
 
     useEffect(() => {
       const intervalId = setInterval(() => {
         setCurrentImageIndex((prevIndex) => (prevIndex + 1) % portfolioData.profileImages.length);
       }, 3000);
 
-      pulseTimeout = setTimeout(() => {      
-        setIsPulsing(false);
-      }, 2000);
+      // Trigger content animation shortly after component mounts
+      const timer = setTimeout(() => setIsContentVisible(true), 100);
 
-
-      return () => clearInterval(intervalId);
+      return () => {
+        clearInterval(intervalId);
+        clearTimeout(timer);
+      };
     }, []);
 
     return (
-      <div className="flex flex-col items-center justify-center p-4">
-        <img
-          src={portfolioData.profileImages[currentImageIndex]}
-          alt="Profile"
-          className={`w-64 h-64 rounded-full mx-auto mb-4 object-cover transition-transform duration-500 transform hover:scale-105 ${isPulsing ? 'animate-pulse' : ''}`}
-        />
-        <h1 className="text-5xl sm:text-6xl font-bold mb-2">
+      <div className={`flex flex-col items-center justify-center p-4 ${isContentVisible ? 'content-visible' : ''}`}>
+        <div className="profile-image-container">
+          <div className="image-fade-wrapper">
+            <SwitchTransition>
+              <CSSTransition
+                key={currentImageIndex}
+                addEndListener={(node, done) => node.addEventListener("transitionend", done, false)}
+                classNames="image-fade"
+              >
+                <img src={portfolioData.profileImages[currentImageIndex]} alt="Profile" />
+              </CSSTransition>
+            </SwitchTransition>
+          </div>
+        </div>
+        <h1 className="text-5xl sm:text-6xl font-bold mb-2 hero-text-stagger" style={{ transitionDelay: '150ms' }}>
           {portfolioData.name}
         </h1>
-        <h2 className="text-2xl sm:text-3xl text-indigo-400 font-semibold mb-4">
+        <h2 className="text-2xl sm:text-3xl text-indigo-400 font-semibold mb-4 hero-text-stagger" style={{ transitionDelay: '250ms' }}>
           {portfolioData.title}
         </h2>
-        <p className="max-w-2xl mx-auto text-lg text-gray-300 text-center">
+        <p className="max-w-2xl mx-auto text-lg text-gray-300 text-center hero-text-stagger" style={{ transitionDelay: '350ms' }}>
           {portfolioData.bio}
         </p>
       </div>
