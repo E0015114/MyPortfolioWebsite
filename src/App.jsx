@@ -158,7 +158,7 @@ const App = () => {
         clearInterval(intervalId);
         clearTimeout(timer);
       };
-    }, [portfolioData.profileImages.length]);
+    }, []);
 
     return (
       <div className={`flex flex-col items-center justify-center p-4 ${isContentVisible ? 'content-visible' : ''}`}>
