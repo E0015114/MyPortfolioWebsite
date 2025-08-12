@@ -57,17 +57,20 @@ const App = () => {
   const [activeSection, setActiveSection] = useState('hero');
 
   const Hero = () => {
+
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
-    const [isPulsing, setIsPulsing] = useState(true);
+    const [isPulsing, setIsPulsing] = useState(true);    
+    let pulseTimeout;
 
     useEffect(() => {
       const intervalId = setInterval(() => {
         setCurrentImageIndex((prevIndex) => (prevIndex + 1) % portfolioData.profileImages.length);
       }, 3000);
 
-      setTimeout(() => {
+      pulseTimeout = setTimeout(() => {      
         setIsPulsing(false);
       }, 2000);
+
 
       return () => clearInterval(intervalId);
     }, []);
@@ -77,7 +80,7 @@ const App = () => {
         <img
           src={portfolioData.profileImages[currentImageIndex]}
           alt="Profile"
-          className={`w-64 h-64 rounded-full mx-auto mb-4 object-cover ${isPulsing ? 'animate-pulse' : ''}`}
+          className={`w-64 h-64 rounded-full mx-auto mb-4 object-cover transition-transform duration-500 transform hover:scale-105 ${isPulsing ? 'animate-pulse' : ''}`}
         />
         <h1 className="text-5xl sm:text-6xl font-bold mb-2">
           {portfolioData.name}
@@ -85,7 +88,7 @@ const App = () => {
         <h2 className="text-2xl sm:text-3xl text-indigo-400 font-semibold mb-4">
           {portfolioData.title}
         </h2>
-        <p className="max-w-2xl mx-auto text-lg text-gray-300">
+        <p className="max-w-2xl mx-auto text-lg text-gray-300 text-center">
           {portfolioData.bio}
         </p>
       </div>
@@ -93,20 +96,28 @@ const App = () => {
   };
 
   const Projects = () => (
-    <div className="container mx-auto p-4 flex-grow flex items-center justify-center h-full">
+    <div className="container mx-auto p-4 flex-grow flex items-center justify-center h-full ">
       <div className="text-center w-full">
         <h2 className="text-4xl font-bold mb-10">Featured Projects</h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {portfolioData.projects.map((project) => (
-            <div key={project.id} className="bg-gray-700 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
-              <h3 className="text-2xl font-semibold text-white mb-2">{project.title}</h3>
-              <p className="text-lg text-gray-300 mb-4">{project.description}</p>
-              <a
-                href={project.link}
-                className="inline-block text-lg text-indigo-400 hover:text-indigo-300 font-medium transition-colors"
-              >
-                View Project →
-              </a>
+          {portfolioData.projects.map(project => (
+            <div key={project.id} className="project-card-container">
+              <div className="project-card">
+                <div className="project-card-front bg-gray-700 p-6 rounded-xl shadow-lg flex flex-col justify-center items-center text-center">
+                  <h3 className="text-2xl font-semibold text-white">{project.title}</h3>
+                </div>
+                <div className="project-card-back bg-gray-800 p-6 rounded-xl shadow-lg">
+                  <p className="text-lg text-gray-300 mb-4">{project.description}</p>
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block text-lg text-indigo-400 hover:text-indigo-300 font-medium transition-colors"
+                  >
+                    View Project →
+                  </a>
+                </div>
+              </div>
             </div>
           ))}
         </div>
@@ -201,7 +212,7 @@ const App = () => {
     }
   };
 
-  return (
+  return (    
     <div className="bg-gray-900 text-gray-100 font-sans h-screen flex flex-col">
       <main className="flex-grow flex items-center justify-center p-[15px]">
         <div className="w-full mx-auto px-4">
@@ -218,7 +229,7 @@ const App = () => {
           </SwitchTransition>
         </div>
       </main>
-      <footer className="fixed bottom-[25px] left-0 right-0 z-50">
+    <footer className="fixed bottom-[25px] left-0 right-0 z-50 ">
         <nav className="container mx-auto px-4 py-4 flex justify-center items-center">
           <div className="space-x-4">
             {activeSection !== 'hero' && (
@@ -240,7 +251,7 @@ const App = () => {
             )}
           </div>
         </nav>
-      </footer>
+    </footer>    
     </div>
   );
 };
