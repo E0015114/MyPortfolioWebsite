@@ -55,6 +55,7 @@ const App = () => {
   };
 
   const [activeSection, setActiveSection] = useState('hero');
+  const [enlargedProject, setEnlargedProject] = useState(null);
 
   const Hero = () => {
 
@@ -100,24 +101,14 @@ const App = () => {
       <div className="text-center w-full">
         <h2 className="text-4xl font-bold mb-10">Featured Projects</h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {portfolioData.projects.map(project => (
-            <div key={project.id} className="project-card-container">
-              <div className="project-card">
-                <div className="project-card-front bg-gray-700 p-6 rounded-xl shadow-lg flex flex-col justify-center items-center text-center">
-                  <h3 className="text-2xl font-semibold text-white">{project.title}</h3>
-                </div>
-                <div className="project-card-back bg-gray-800 p-6 rounded-xl shadow-lg">
-                  <p className="text-lg text-gray-300 mb-4">{project.description}</p>
-                  <a
-                    href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-block text-lg text-indigo-400 hover:text-indigo-300 font-medium transition-colors"
-                  >
-                    View Project →
-                  </a>
-                </div>
-              </div>
+          {portfolioData.projects.map((project) => (
+            <div
+              key={project.id}
+              className="bg-gray-700 p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer transform hover:-translate-y-2 flex flex-col justify-center items-center text-center"
+              onClick={() => setEnlargedProject(project)}
+            >
+              <h3 className="text-2xl font-semibold text-white">{project.title}</h3>
+              <p className="text-indigo-400 mt-4 font-semibold">View Details</p>
             </div>
           ))}
         </div>
@@ -213,7 +204,7 @@ const App = () => {
   };
 
   return (    
-    <div className="bg-gray-900 text-gray-100 font-sans h-screen flex flex-col">
+    <div className={`bg-gray-900 text-gray-100 font-sans h-screen flex flex-col ${enlargedProject ? 'overflow-hidden' : ''}`}>
       <main className="flex-grow flex items-center justify-center p-[15px]">
         <div className="w-full mx-auto px-4">
           <SwitchTransition mode="out-in">
@@ -229,6 +220,35 @@ const App = () => {
           </SwitchTransition>
         </div>
       </main>
+
+      <SwitchTransition>
+        <CSSTransition
+          key={!!enlargedProject}
+          addEndListener={(node, done) => node.addEventListener("transitionend", done, false)}
+          classNames="modal-fade"
+          unmountOnExit
+        >
+          {enlargedProject ? (
+            <div className="project-modal-overlay" onClick={() => setEnlargedProject(null)}>
+              <div className="project-modal-content" onClick={(e) => e.stopPropagation()}>
+                <button className="project-modal-close" onClick={() => setEnlargedProject(null)} aria-label="Close project details">
+                  &times;
+                </button>
+                <h3 className="text-3xl font-bold text-white mb-4">{enlargedProject.title}</h3>
+                <p className="text-lg text-gray-300 mb-6">{enlargedProject.description}</p>
+                <a
+                  href={enlargedProject.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block text-lg text-indigo-400 hover:text-indigo-300 font-medium transition-colors"
+                >
+                  View Project →
+                </a>
+              </div>
+            </div>
+          ) : <div />}
+        </CSSTransition>
+      </SwitchTransition>
     <footer className="fixed bottom-[25px] left-0 right-0 z-50 ">
         <nav className="container mx-auto px-4 py-4 flex justify-center items-center">
           <div className="space-x-4">

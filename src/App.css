@@ -51,39 +51,73 @@
   transform-origin: bottom left;
 }
 
-/* Project Card Flip Animation */
-.project-card-container {
-  perspective: 1000px;
-  min-height: 280px; /* Adjust as needed for your content */
+/* --- Modal styles for enlarged project cards --- */
+
+/* The blurred background overlay */
+.project-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px); /* For Safari */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
 }
 
-.project-card {
+/* The modal content box */
+.project-modal-content {
+  background-color: #2d3748; /* Corresponds to bg-gray-800 */
+  padding: 2rem;
+  border-radius: 0.75rem; /* Corresponds to rounded-xl */
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  width: 90%;
+  max-width: 600px;
   position: relative;
-  width: 100%;
-  height: 100%;
-  transition: transform 0.7s;
-  transform-style: preserve-3d;
-}
-
-.project-card-container:hover .project-card {
-  transform: rotateY(180deg);
-}
-
-.project-card-front,
-.project-card-back {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  -webkit-backface-visibility: hidden; /* Safari */
-  backface-visibility: hidden;
-  /* Tailwind's rounded-xl is 0.75rem */
-  border-radius: 0.75rem; 
-}
-
-.project-card-back {
-  transform: rotateY(180deg);
-  /* Ensure content is scrollable if it overflows on smaller cards */
+  max-height: 90vh;
   overflow-y: auto;
+}
+
+/* The 'x' close button */
+.project-modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 2rem;
+  line-height: 1;
+  color: #a0aec0; /* Corresponds to text-gray-500 */
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.2s ease-in-out;
+}
+
+.project-modal-close:hover {
+  color: #e2e8f0; /* Corresponds to text-gray-300 */
+}
+
+/* Modal fade and scale animation */
+.modal-fade-enter {
+  opacity: 0;
+  transform: scale(0.95);
+}
+.modal-fade-enter-active {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 300ms, transform 300ms;
+}
+.modal-fade-exit {
+  opacity: 1;
+  transform: scale(1);
+}
+.modal-fade-exit-active {
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 300ms, transform 300ms;
 }
 
 
