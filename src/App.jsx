@@ -54,6 +54,14 @@ const App = () => {
     ],
   };
 
+  const navLinks = [
+    { id: 'hero', label: 'Home' },
+    { id: 'projects', label: 'Projects' },
+    { id: 'skills', label: 'Skills' },
+    { id: 'resume', label: 'Resume' },
+    { id: 'contact', label: 'Contact' },
+  ];
+
   const [activeSection, setActiveSection] = useState('hero');
   const [enlargedProject, setEnlargedProject] = useState(null);
 
@@ -249,29 +257,21 @@ const App = () => {
           ) : <div />}
         </CSSTransition>
       </SwitchTransition>
-    <footer className="fixed bottom-[25px] left-0 right-0 z-50 ">
-        <nav className="container mx-auto px-4 py-4 flex justify-center items-center">
-          <div className="space-x-4">
-            {activeSection !== 'hero' && (
-              <a onClick={() => setActiveSection('hero')} className="nav-link text-lg text-gray-300 hover:text-white transition-colors cursor-pointer">
-                Home
+      <footer className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50">
+        <nav className="bg-gray-800/60 backdrop-blur-md rounded-full shadow-lg p-2">
+          <div className="flex items-center space-x-1">
+            {navLinks.map(link => (
+              <a
+                key={link.id}
+                onClick={() => setActiveSection(link.id)}
+                className={`nav-pill ${activeSection === link.id ? 'active' : ''}`}
+              >
+                {link.label}
               </a>
-            )}
-            {activeSection !== 'projects' && (
-              <a onClick={() => setActiveSection('projects')} className="nav-link text-lg text-gray-300 hover:text-white transition-colors cursor-pointer">Projects</a>
-            )}
-            {activeSection !== 'skills' && (
-              <a onClick={() => setActiveSection('skills')} className="nav-link text-lg text-gray-300 hover:text-white transition-colors cursor-pointer">Skills</a>
-            )}
-            {activeSection !== 'resume' && (
-              <a onClick={() => setActiveSection('resume')} className="nav-link text-lg text-gray-300 hover:text-white transition-colors cursor-pointer">Resume</a>
-            )}
-            {activeSection !== 'contact' && (
-              <a onClick={() => setActiveSection('contact')} className="nav-link text-lg text-gray-300 hover:text-white transition-colors cursor-pointer">Contact</a>
-            )}
+            ))}
           </div>
         </nav>
-    </footer>    
+      </footer>
     </div>
   );
 };

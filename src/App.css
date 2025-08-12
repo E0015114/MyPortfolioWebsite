@@ -24,31 +24,28 @@
   transition: opacity 300ms ease-in-out, transform 300ms ease-in-out;
 }
 
-.nav-link {
-  position: relative;
-  display: inline-block; /* Ensures transform and positioning work correctly */
+/* --- Pill Navigation Bar --- */
+.nav-pill {
+  padding: 0.5rem 1.25rem; /* Corresponds to py-2 px-5 */
+  border-radius: 9999px; /* Corresponds to rounded-full */
+  cursor: pointer;
+  font-size: 1.125rem; /* Corresponds to text-lg */
+  font-weight: 500; /* Corresponds to font-medium */
+  color: #d1d5db; /* Corresponds to text-gray-300 */
+  transition: all 0.3s ease-in-out;
+  user-select: none; /* Standard property */
+  -webkit-user-select: none; /* For Safari */
 }
 
-.nav-link:hover {
-  /* The color transition is already handled by Tailwind's `hover:text-white` */
+.nav-pill:hover:not(.active) {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #ffffff; /* Corresponds to text-white */
 }
 
-.nav-link::after {
-  content: '';
-  position: absolute;
-  width: 100%;
-  transform: scaleX(0);
-  height: 2px;
-  bottom: -4px; /* Adjust this value to position the line */
-  left: 0;
-  background-color: #818cf8; /* Corresponds to Tailwind's `text-indigo-400` */
-  transform-origin: bottom right;
-  transition: transform 0.25s ease-out;
-}
-
-.nav-link:hover::after {
-  transform: scaleX(1);
-  transform-origin: bottom left;
+.nav-pill.active {
+  background-color: #4f46e5; /* Corresponds to bg-indigo-600 */
+  color: #ffffff; /* Corresponds to text-white */
+  box-shadow: 0 4px 14px rgba(79, 70, 229, 0.5);
 }
 
 /* --- Modal styles for enlarged project cards --- */
