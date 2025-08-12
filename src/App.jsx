@@ -462,9 +462,9 @@ const App = () => {
           ) : <div />}
         </CSSTransition>
       </SwitchTransition>
-      <footer className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50">
-        <nav className="bg-gray-800/60 backdrop-blur-md rounded-full shadow-lg p-2">
-          <div className="flex items-center space-x-1">
+      <footer className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 w-auto max-w-[95vw]">
+        <nav className="bg-gray-800/60 backdrop-blur-md rounded-2xl md:rounded-full shadow-lg p-2">
+          <div className="flex flex-wrap items-center justify-center gap-1">
             {navLinks.map((link) => (
               <button
                 type="button"
